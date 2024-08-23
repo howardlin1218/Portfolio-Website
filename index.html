@@ -9,17 +9,19 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Return to top</button>
     <nav id="desktop-nav">
         <div class="logo">Howard Lin</div>
-        <div class="d">
-            <ul class="nav-links">
-                <li><a href="#about">about</a></li>
-                <li><a href="#experience">experience</a></li>
-                <li><a href="#projects">projects</a></li>
-                <li><a href="#contact">contact</a></li>
-            </ul>
-        </div>
+            <div class="d">
+                <ul class="nav-links">
+                    <li><a href="#prev-about">about</a></li>
+                    <li><a href="#prev-experience">experience</a></li>
+                    <li><a href="#prev-projects">projects</a></li>
+                    <li><a href="#prev-contact">contact</a></li>
+                </ul>
+            </div>
     </nav>
+    
     <nav id="hamburger-nav">
         <div class="logo">Howard Lin</div>
         <div class="menu">
@@ -29,12 +31,47 @@
                 <span></span>
             </div>
             <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">about</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">contact</a></li>
+                <li><a href="#prev-about" onclick="toggleMenu()">about</a></li>
+                <li><a href="#prev-experience" onclick="toggleMenu()">experience</a></li>
+                <li><a href="#prev-projects" onclick="toggleMenu()">projects</a></li>
+                <li><a href="#prev-contact" onclick="toggleMenu()">contact</a></li>
             </div>
         </div>
     </nav>
+    <div id="prev-about"></div>
+    <section id="about">
+        <div id="photo">
+            <img src = "profilephoto.PNG" alt="Profile Photo">
+        </div>
+        <div id="intro-wrapper">
+            <div id="intro">
+                <h1 class="intro-text">Welcome!</h1>
+                <h3>Check out my links below!</h3>
+                <div id="intro-button">
+                    <button id="intro-button-one"><a href="https://github.com/howardlin1218" target="_blank"><img src="github.png"></a></button>
+                    <button id="intro-button-two"><a href="https://www.linkedin.com/in/howard-lin-b0a897255/" target="_blank"><img src="linkedin.png"></a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="prev-experience"></div>
+    <section id="experience">
+        <object class="png" 
+            data="howardlin_resume.pdf"
+            width="800"
+            height="500">
+        </object>
+    </section>
+
+    <div id="prev-projects"></div>
+    <section id="projects">
+
+    </section>
+
+    <div id="prev-contact"></div>
+    <section id="contact">
+
+    </section>
 </body>
 </html>
