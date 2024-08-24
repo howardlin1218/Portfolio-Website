@@ -45,7 +45,6 @@ nav {
 a {
     color: black;
     text-decoration: none;
-    text-decoration-color: white;
 }
 
 a:hover {
@@ -137,14 +136,19 @@ a:hover {
 }
 
 /**/
-#prev-about, #prev-experience, #prev-projects, #prev-contact {
+#prev-about, #prev-resume, #prev-projects, #prev-contact {
     margin-top: -10vh;
     height: 10vh;
     width: 100%;
-    background-color: transparent;
     display: flex;
 }
+
+#prev-resume {
+    margin-top: 5vh;
+}
+
 #about {
+    margin-top: 10vh;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -199,35 +203,48 @@ a:hover {
     width: 50px;
 }
 
-#experience {
+#resume {
+    margin-top: 10vh;
     display: flex;
     width: 100%;
-    background-color: blueviolet;
     flex-direction: row;
+    height: 100vh;
+    justify-content:space-evenly;
 }
 
-#experience img {
-    width: 30%;
-    border-radius: 10%;
+#resume-pic {
+    margin-top: -7vh;
+    border-style: solid;
+}
+
+#resume-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#resume-link {
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+#resume-link:hover {
+    text-underline-offset: 0.5rem;
+    cursor: pointer;
 }
 
 #projects {
-    height: 500px;
     width: 100%;
-    background-color:brown;
 }
 
 #contact {
-    height: 500px;
     width: 100%;
-    background-color:antiquewhite;
 }
 
 h3 {
     margin-left: 20px;
 }
-
-
 
 
 
