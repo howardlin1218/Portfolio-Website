@@ -1,8 +1,18 @@
 function toggleMenu() {
     const menu = document.querySelector(".menu-links");
     const icon = document.querySelector(".hamburger-icon");
-    menu.classList.toggle("open");
-    icon.classList.toggle("open");
+    if (menu.classList.contains("open")) {
+        menu.classList.toggle("close");
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+    } else if (menu.classList.contains("close")){
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+        menu.classList.toggle("close");
+    } else {
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+    }
 }
 
 // Get the button:
