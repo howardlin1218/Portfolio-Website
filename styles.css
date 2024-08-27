@@ -52,6 +52,7 @@ a:hover {
     text-decoration: underline;
     text-underline-offset: 1rem;
     text-decoration-color: rgb(181,181,181);
+    cursor: pointer;
 }
 
 .logo {
@@ -148,7 +149,6 @@ a:hover {
     height: 10vh;
     width: 100%;
     display: flex;
-    background-color: black;
 }
 
 #prev-resume {
@@ -181,6 +181,9 @@ a:hover {
     margin-left: 50px;
 }
 
+#intro {
+    cursor: default;
+}
 .intro-text {
     font-size: 50px;
     padding-left: 10px;
@@ -237,6 +240,7 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: default;
 }
 
 #resume-link {
@@ -249,53 +253,108 @@ a:hover {
     cursor: pointer;
 }
 
+#proj-title {
+    cursor: default;
+    margin-top: 1vh;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10vh;
+}
+
 #projects {
     display: flex;
     position: relative;
-    background-color:blanchedalmond;
     width: 100%;
     height: 100%;
     flex-direction: row;
-    justify-content: space-around;
-    margin-top: 10vh;
+    justify-content: space-evenly;
+    padding-bottom: 100vh;
+    align-items: center;
 }
 
 .project {
     display: flex;
     position: relative;
-    background-color: beige;
     width: fit-content;
     height: fit-content;
 }
 
+.proj{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+#proj-two {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: stretch;
+}
+
+.proj-desc {
+    margin-left: 5vh;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+}
+
+.second-line {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.proj-text {
+    margin-left: -65vh;
+}
+
 .overlay {
+    display: flex;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgb(181,181,181, 0.5);
+    background-color: rgb(181,181,181, 0.9);
     overflow: hidden;
     width: 0;
     height: 100%;
     transition: .5s ease;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.overlay a {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.overlay a:hover {
+    font-size: 120%;
+    transform: all 0.3ms ease;
+    color: black;
+    text-decoration-color: black;
 }
 
 .proj-img {
-    background-color: azure;
     height: 30vh;
     width: 30vh;
+    border-style: ridge;
+    border-color: black;
 }
 
-#projects .project:hover .overlay{
+.project:hover .overlay {
     width: 100%;
 }
 
 #contact {
     width: 100%;
-}
-
-h3 {
-    margin-left: 20px;
 }
 
 #myBtn {
@@ -325,3 +384,4 @@ h3 {
 #myBtn:hover {
     color: grey;
 }
+
