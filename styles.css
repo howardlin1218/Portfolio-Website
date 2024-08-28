@@ -186,7 +186,10 @@ a:hover {
 }
 
 #intro {
+    display: flex;
+    flex-direction: column;
     cursor: default;
+    align-items: center;
 }
 
 .intro-text {
@@ -194,11 +197,16 @@ a:hover {
     padding-left: 10px;
 }
 
+#intro-text-two {
+    padding-left: 20px;
+}
+
 #intro-button { 
     margin-top: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
 #intro-button button {
@@ -362,6 +370,10 @@ a:hover {
     border-color: black;
 }
 
+.title-line {
+    text-decoration: underline;
+    text-underline-offset: 0.1rem;
+}
 .project:hover .overlay {
     width: 100%;
 }
@@ -468,7 +480,7 @@ a:hover {
 
 #myBtn img {
     height: 2vh;
-    background-color: white;
+    background-color: transparent;
     padding-left: 1vh;
 }
 
