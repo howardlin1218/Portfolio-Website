@@ -1,6 +1,40 @@
+document.addEventListener("touchstart", function() {}, true);
+
+// Select all elements you want to be "sticky"
+const projCards = document.querySelectorAll('.card-img-overlay');
+
+projCards.forEach(projCard => {
+    projCard.addEventListener('touchstart', function() {
+        // 1. Remove the class from all other cards
+        projCards.forEach(c => {
+            if (c !== this) c.classList.remove('is-triggered');
+        });
+        
+        // 2. Toggle the class on the one you just tapped
+        this.classList.toggle('is-triggered');
+    });
+});
+
 function toggleMenu() {
     const menu = document.querySelector(".menu-links");
     const icon = document.querySelector(".hamburger-icon");
+    if (menu.classList.contains("open")) {
+        menu.classList.toggle("close");
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+    } else if (menu.classList.contains("close")){
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+        menu.classList.toggle("close");
+    } else {
+        menu.classList.toggle("open");
+        icon.classList.toggle("open");
+    }
+}
+
+function toggleMenuTwo() {
+    const menu = document.querySelector(".menu-links-two");
+    const icon = document.querySelector(".hamburger-icon-two");
     if (menu.classList.contains("open")) {
         menu.classList.toggle("close");
         menu.classList.toggle("open");
@@ -35,30 +69,6 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
-
-// const grid = document.querySelector(".proj-cards-container");
-//   const items = Array.from(grid.children);
-
-//   const columns = getComputedStyle(grid)
-//     .gridTemplateColumns.split(" ").length;
-
-//   const observer = new IntersectionObserver(
-//     ([entry]) => {
-//       if (!entry.isIntersecting) {
-//         items.forEach(item => item.classList.remove("show"));
-//         return;
-//       }
-
-//       items.forEach((item, index) => {
-//         const delay = index * 120; // row-based order
-//         item.style.transitionDelay = `${delay}ms`;
-//         item.classList.add("show");
-//       });
-//     },
-//     { threshold: 0.3 }
-//   );
-
-//   observer.observe(grid);
 
 const names = ['Software Engineer.', 'Designer.', 'Student.'];
 const title = document.querySelector('#changing-title');
@@ -120,6 +130,7 @@ function modeToggle() {
     document.documentElement.style.setProperty('--borderHoverColor', 'rgba(35, 29, 28, 0.146)');
     document.documentElement.style.setProperty('--navColor', 'white');
     document.documentElement.style.setProperty('--navBorderColor', 'transparent');
+    document.documentElement.style.setProperty('--filterColor', 'yellow');
   } else { 
     document.documentElement.style.setProperty('--mainColor', '#1A202C');
     document.documentElement.style.setProperty('--fontColor', 'white');
@@ -129,7 +140,110 @@ function modeToggle() {
     document.documentElement.style.setProperty('--borderHoverColor', 'rgba(99, 102, 241, 0.15)');
     document.documentElement.style.setProperty('--navColor', 'rgb(4, 3, 44)');
     document.documentElement.style.setProperty('--navBorderColor', 'rgba(255, 255, 255, 0.3)');
+    document.documentElement.style.setProperty('--filterColor', 'lightblue');
   }
   
   document.body.classList.toggle('dark');
 }
+
+document.querySelectorAll('.card-img').forEach(card => {
+  card.addEventListener('click', function(e) {
+    // Toggle active class on the clicked card
+    this.classList.toggle('active');
+    
+    // Optional: Close other open cards
+    document.querySelectorAll('.card-img').forEach(otherCard => {
+      if (otherCard !== this) otherCard.classList.remove('active');
+    });
+  });
+});
+
+const searchInput = document.getElementById('skillSearch');
+const cards = document.querySelectorAll('.proj-card');
+const noResults = document.getElementById('noResults');
+const clearBtn = document.getElementById('clearBtn');
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  clearBtn.style.display = 'none';
+
+  searchInput.dispatchEvent(new Event('input'));
+  
+  // Refocus the search bar for the user
+  searchInput.focus();
+})
+
+searchInput.addEventListener('input', () => {
+  const searchTerms = searchInput.value.toLowerCase()
+    .split(',')
+    .map(t => t.trim())
+    .filter(t => t !== "");
+
+  let hasMatches = false;
+
+  cards.forEach(card => {
+    const tags = card.dataset.tags.toLowerCase();
+    const pillTags = card.querySelectorAll('.proj-attr-item');
+    // Logic: Card must contain every term in the searchTerms array
+    const matchesAll = searchTerms.every(term => tags.includes(term));
+
+    if (searchTerms.length === 0 || matchesAll) {
+      card.style.display = "block";
+      hasMatches = true;
+      if (searchTerms.length === 0) {
+        pillTags.forEach(pillTag => {
+          pillTag.classList.remove('filtered-skill');
+        });
+        clearBtn.style.display = 'none';
+      } else {
+        clearBtn.style.display = 'block';
+      }
+    } else {
+      card.style.display = 'none';
+    }
+    
+    pillTags.forEach(pillTag => {
+      const pillTagText = pillTag.textContent.trim().toLowerCase();
+
+      for (const term of searchTerms) {
+        if (pillTagText.includes(term)) {
+          pillTag.classList.add("filtered-skill");
+          if (pillTagText === term) {
+            break;
+          }
+        } else {
+          pillTag.classList.remove("filtered-skill");
+        }
+      }
+
+    });
+  });
+
+  // Toggle "No Results" message
+  noResults.style.display = hasMatches ? "none" : "block";
+});
+
+let lastScrollY = window.scrollY;
+const nav = document.querySelector('.nav-links');
+const navContainer = document.querySelector('.nav-links-container');
+const MIN_WIDTH = 750;
+
+
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  const hamNav = document.querySelector('.hamburger-nav-abs');
+
+  if (window.innerWidth > MIN_WIDTH) {
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // nav.classList.add('nav-hidden');
+      hamNav.classList.add('nav-shown');
+      navContainer.classList.add('nav-hidden');
+    } else {
+      // nav.classList.remove('nav-hidden');
+      navContainer.classList.remove('nav-hidden');
+      hamNav.classList.remove('nav-shown');
+    }
+  }
+
+  lastScrollY = currentScrollY;
+});
